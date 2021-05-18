@@ -13,7 +13,7 @@ export default class LoginScreen extends React.Component{
     }
     login=async()=>{
       firebase.auth().signInWithEmailAndPassword(this.state.emailId,this.state.password).then(()=>{
-        this.props.navigation.navigate("homeScreen")
+        this.props.navigation.navigate("HomeScreen")
       }).catch((error)=>{
         return Alert.alert(error.message)
         
@@ -27,7 +27,9 @@ export default class LoginScreen extends React.Component{
                 placeholder="email ID"
                 value={this.state.emailId}
                 onChangeText={(text)=>{
+                    this.setState({
                     emailId:text
+                    })
                 }}
                 />
                   <TextInput 
@@ -36,7 +38,9 @@ export default class LoginScreen extends React.Component{
                 value={this.state.password}
                 secureTextEntry={true}
                 onChangeText={(text)=>{
-                    password:text
+                    this.setState({
+                        emailId:text
+                        })
                 }}
                 />
                 <TouchableOpacity onPress={()=>{
@@ -50,5 +54,16 @@ export default class LoginScreen extends React.Component{
 var styles=StyleSheet.create({
     textinput:{
         padding:10
+    }, textinput:{
+        padding:10,
+        borderWidth:0.5,
+        marginTop:10,
+        alignSelf:"center"
+    },button:{
+        padding:10,
+        borderWidth:0.5,
+        marginTop:10,
+        alignSelf:"center",
+        backgroundColor:"red"
     }
 })

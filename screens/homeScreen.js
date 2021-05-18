@@ -9,7 +9,9 @@ export default class HomeScreen extends React.Component{
             <KeyboardAvoidingView>
                <Header centerComponent={"home screen"}></Header>
                <TouchableOpacity><Text>CamNotes</Text></TouchableOpacity>
-               <TouchableOpacity><Text>WriteNotes</Text></TouchableOpacity>
+               <TouchableOpacity style={styles.button} onPress={()=>{
+                   this.props.navigation.navigate("AddWrittenNotes")
+               }}><Text>WriteNotes</Text></TouchableOpacity>
                
             </KeyboardAvoidingView>
         )
@@ -18,5 +20,16 @@ export default class HomeScreen extends React.Component{
 var styles=StyleSheet.create({
     textinput:{
         padding:10
+    }, textinput:{
+        padding:10,
+        borderWidth:0.5,
+        marginTop:10,
+        alignSelf:"center"
+    },button:{
+        padding:10,
+        borderWidth:0.5,
+        marginTop:10,
+        alignSelf:"center",
+        backgroundColor:"red"
     }
 })

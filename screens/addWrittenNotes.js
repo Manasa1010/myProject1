@@ -1,5 +1,5 @@
 import * as React from "react"
-import {View,TouchableOpacity,Text, KeyboardAvoidingView, TextInput,StyleSheet} from "react-native"
+import {View,TouchableOpacity,Text,ToastAndroid, KeyboardAvoidingView, TextInput,StyleSheet} from "react-native"
 import {Header} from "react-native-elements"
 import firebase from "firebase"
 import db from "../config"
@@ -22,6 +22,8 @@ export default class AddWrittenNotes extends React.Component{
         note:this.state.note,
         rating:this.state.rating
     })
+    this.props.navigation.navigate("HomeScreen")
+    ToastAndroid.show("Notes was added Successfully",ToastAndroid.SHORT)
   }
 
     render(){
@@ -49,7 +51,9 @@ export default class AddWrittenNotes extends React.Component{
                <TouchableOpacity style={styles.button} onPress={()=>{
                    this.submitNote();
                }}><Text>Submit</Text></TouchableOpacity>
-               <TouchableOpacity style={styles.button}><Text>Cancel</Text></TouchableOpacity>
+               <TouchableOpacity style={styles.button}onPress={()=>{
+                   this.props.navigation.navigate("HomeScreen")
+               }}><Text>Cancel</Text></TouchableOpacity>
                
             </KeyboardAvoidingView>
         )
