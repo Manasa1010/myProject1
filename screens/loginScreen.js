@@ -1,6 +1,7 @@
 import * as React from "react"
 import {View,TouchableOpacity,Text, KeyboardAvoidingView, TextInput,StyleSheet} from "react-native"
 import firebase from "firebase"
+import { Alert } from "react-native";
 
 export default class LoginScreen extends React.Component{
     constructor(){
@@ -13,8 +14,8 @@ export default class LoginScreen extends React.Component{
     login=async()=>{
       firebase.auth().signInWithEmailAndPassword(this.state.emailId,this.state.password).then(()=>{
         this.props.navigation.navigate("homeScreen")
-      }).catch(()=>{
-
+      }).catch((error)=>{
+        return Alert.alert(error.message)
         
       })
     }
