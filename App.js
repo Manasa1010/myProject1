@@ -8,6 +8,9 @@ import AddWrittenNotes from "./screens/addWrittenNotes"
 import CamNotes from "./screens/camNotes"
 import WrittenNotes from "./screens/writtenNotes"
 import LoginScreen from "./screens/loginScreen"
+import {createDrawerNavigator} from "react-navigation-drawer"
+import CustomSideBarMenu from "./components/customSideBarMenu";
+import EditProfileInfo from "./screens/editProfileInfo";
 
 export default class App extends React.Component{
   render(){
@@ -32,6 +35,13 @@ var SwitchNavigator=createSwitchNavigator({
   HomeScreen:TabNavigator,
   
 })
-
+var DrawerNavigator=createDrawerNavigator({
+  Home:{screen:TabNavigator},
+ EditProfileInfo:{screen:EditProfileInfo}
+},{contentComponent:CustomSideBarMenu},{initialRouteName:"Home"})
 
 var AppContainer=createAppContainer(SwitchNavigator);
+
+
+
+//work on edit profile info add written notes flatlist 
