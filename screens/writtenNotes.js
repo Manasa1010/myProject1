@@ -11,13 +11,13 @@ export default class WrittenNotes extends React.Component{
   constructor(){
       super();
       this.state={
-          userId:firebase.auth().currentUser.email,
+          stdentId:firebase.auth().currentUser.email,
           writtenNotesList:[]
       }
       this.requestRef=null;
   }
   getWrittenNotesList=()=>{
-      this.requestRef=db.collection("writtenNotes").where(userId,"==",this.state.userId)
+      this.requestRef=db.collection("writtenNotes")
       .onSnapshot((snapShot)=>{
           var writtenNotesList= snapShot.docs.map((doc)=>doc.data());
           this.setState({
@@ -31,38 +31,36 @@ export default class WrittenNotes extends React.Component{
     componentWillUnmount(){
         this.requestRef();
     }
-    keyExtractor=(item,index)=>{
-        index.toString();
-    };
+    
     renderItem=({item,i})=>{
         return (
-            <ListItem
-            key={i}
-            title={item.subject}
-            subtitle={item.topic}
-            titleStyle={{color:"blue",fontWeight:"bold"}}
-            rightElement={
+            <View>
+                <Text>
+                {item.subject}
+                {item.topic}
+                </Text>
                 <TouchableOpacity 
                 onPress={()=>{
-                    this.props.navigation.navigate("addWrittenNotes",{
-                    details:item
-                })
+                   
                 }}
                 ><Text>View</Text></TouchableOpacity>
-            }
-            />
+            
+            </View>
+                 
+            
         )
     }
     render(){
         return(
             <KeyboardAvoidingView>
+                <Header centerComponent={{text:"WrittenNotes"}}/>
                {this.state.writtenNotesList.length===0?(
                    <View>
                        <Text>Loading............</Text>
                    </View>
                ):(
                    <FlatList 
-                   keyExtractor={this.keyExtractor}
+                   keyExtractor={(item,idexx)=>indexedDB.toString()}
                    data={this.state.writtenNotesList}
                    renderItem={this.renderItem}
                    />

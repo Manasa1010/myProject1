@@ -8,7 +8,9 @@ export default class HomeScreen extends React.Component{
         return(
             <KeyboardAvoidingView>
                <Header centerComponent={"home screen"}></Header>
-               <TouchableOpacity><Text>CamNotes</Text></TouchableOpacity>
+               <TouchableOpacity style={styles.button} onPress={()=>{
+                   this.props.navigation.navigate("AddCamNotes")
+               }}><Text>CamNotes</Text></TouchableOpacity>
                <TouchableOpacity style={styles.button} onPress={()=>{
                    this.props.navigation.navigate("AddWrittenNotes")
                }}><Text>WriteNotes</Text></TouchableOpacity>

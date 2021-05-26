@@ -2,8 +2,9 @@ import * as React from "react"
 import {View,TouchableOpacity,Text, KeyboardAvoidingView, TextInput,StyleSheet} from "react-native"
 import {Header} from "react-native-elements"
 import {DrawerItems} from "react-navigation-drawer"
+import firebase from "firebase" 
 export default class CustomSideBarMenu extends React.Component{
-  
+ 
     render(){
         return(
            <View>

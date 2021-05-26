@@ -4,6 +4,7 @@ import firebase from "firebase"
 import db from "../config"
 import { Alert } from "react-native";
 
+
 export default class LoginScreen extends React.Component {
     constructor() {
         super();
@@ -31,9 +32,9 @@ export default class LoginScreen extends React.Component {
             return Alert.alert('password not matching')
         } else {
             firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-                db.collection('User').add({
+                db.collection('students').add({
                     firstName: this.state.firstName,
-                    lasrName: this.state.lastName,
+                    lastName: this.state.lastName,
                     class: this.state.class,
                     section: this.state.section,
                     email: this.state.emailId,
@@ -97,7 +98,8 @@ export default class LoginScreen extends React.Component {
                                     });
                                 }}
                                 value={this.state.section}
-                            /> <TextInput
+                            /> 
+                            <TextInput
                             style={styles.textinput}
                             placeholder="email ID"
                             value={this.state.emailId}
@@ -178,7 +180,7 @@ export default class LoginScreen extends React.Component {
                         secureTextEntry={true}
                         onChangeText={(text) => {
                             this.setState({
-                                emailId: text
+                                password: text
                             })
                         }}
                     />
