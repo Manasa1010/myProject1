@@ -46,3 +46,4 @@ var AppContainer=createAppContainer(SwitchNavigator);
 
 
 //work on edit profile info add written notes flatlist 
+//cam notes flatlist
