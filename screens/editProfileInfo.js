@@ -6,7 +6,7 @@ import firebase from "firebase"
 export default class EditProfileInfo extends React.Component{
   constructor(){
       super();
-      this.State={
+      this.state={
           studentId:firebase.auth().currentUser.email,
            docId:"",
             firstName: "",

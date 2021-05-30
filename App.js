@@ -31,15 +31,16 @@ var TabNavigator=createBottomTabNavigator({
   CamNotes:{screen:CamNotes},
   WrittenNotes:{screen:WrittenNotes}
 })
+
+var DrawerNavigator=createDrawerNavigator({
+  Home:{screen:TabNavigator},
+ EditProfileInfo:{screen:EditProfileInfo}
+},{contentComponent:CustomSideBarMenu},{initialRouteName:"Home"})
 var SwitchNavigator=createSwitchNavigator({
   LoginScreen:LoginScreen,
   HomeScreen:DrawerNavigator,
   
 })
-var DrawerNavigator=createDrawerNavigator({
-  Home:{screen:TabNavigator},
- EditProfileInfo:{screen:EditProfileInfo}
-},{contentComponent:CustomSideBarMenu},{initialRouteName:"Home"})
 
 var AppContainer=createAppContainer(SwitchNavigator);
 

@@ -4,7 +4,7 @@ import firebase from "firebase"
 import db from "../config"
 import { Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker"
-
+import{CameraRoll} from "@react-native-community/cameraroll"
 
 export default class AddCamNotes extends React.Component{
 constructor(){
@@ -12,6 +12,20 @@ constructor(){
     this.state={
         studentId:firebase.auth().currentUser.email,
         image:"#"
+    }
+}
+openCamera=async()=>{
+    const result=await ImagePicker.launchCameraAsync({
+        allowsEditing:true,
+        exif:true
+    })
+    if(!result.cancelled){
+        this.setState({
+            image:result.uri,
+
+        })
+        CameraRoll.saveToCameraRoll(this.state.image)
+        this.uploadImage(result.uri,this.state.studentId+Math.random().toString(36).substring(7))
     }
 }
 selectPicture=async()=>{
@@ -25,7 +39,7 @@ selectPicture=async()=>{
     this.setState({
         image:uri
     })
-    this.uploadImage(uri,this.state.studentId)
+    this.uploadImage(uri,this.state.studentId+Math.random().toString(36).substring(7))
 }
 }
 uploadImage=async(uri,imageName)=>{
@@ -33,7 +47,37 @@ uploadImage=async(uri,imageName)=>{
     var blob=await responce.blob()
     var ref=firebase.storage().ref.child("user_profiles/"+imageName)
     return ref.put(blob).then((responce)=>{
-        this.fetchImage(imageName)
+      //  this.fetchImage(imageName)
     })
 }
+render(){
+    return(
+        <KeyboardAvoidingView>
+           <Header centerComponent={"home screen"}></Header>
+           <TouchableOpacity style={styles.button} onPress={()=>{
+              this.openCamera()
+           }}><Text>Open Camera</Text></TouchableOpacity>
+           <TouchableOpacity style={styles.button} onPress={()=>{
+               this.selectPicture()
+           }}><Text>Open Gallery</Text></TouchableOpacity>
+           
+        </KeyboardAvoidingView>
+    )
 }
+}
+var styles=StyleSheet.create({
+    textinput:{
+        padding:10
+    }, textinput:{
+        padding:10,
+        borderWidth:0.5,
+        marginTop:10,
+        alignSelf:"center"
+    },button:{
+        padding:10,
+        borderWidth:0.5,
+        marginTop:10,
+        alignSelf:"center",
+        backgroundColor:"red"
+    }
+})

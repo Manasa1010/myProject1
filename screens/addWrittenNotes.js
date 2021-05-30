@@ -52,7 +52,7 @@ export default class AddWrittenNotes extends React.Component{
                    this.submitNote();
                }}><Text>Submit</Text></TouchableOpacity>
                <TouchableOpacity style={styles.button}onPress={()=>{
-                   this.props.navigation.navigate("HomeScreen")
+                   this.props.navigation.navigate("Home")
                }}><Text>Cancel</Text></TouchableOpacity>
                
             </KeyboardAvoidingView>

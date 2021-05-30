@@ -3,7 +3,7 @@ import {View,TouchableOpacity,Text, KeyboardAvoidingView, TextInput,StyleSheet} 
 import {Header} from "react-native-elements"
 import db from "../config"
 import firebase from "firebase"
-import {ListItem} from "react-native-elements"
+
 import { FlatList } from "react-native"
 
 
@@ -37,6 +37,8 @@ export default class WrittenNotes extends React.Component{
             <View>
                 <Text>
                 {item.subject}
+                </Text>
+                <Text>
                 {item.topic}
                 </Text>
                 <TouchableOpacity 
@@ -60,7 +62,7 @@ export default class WrittenNotes extends React.Component{
                    </View>
                ):(
                    <FlatList 
-                   keyExtractor={(item,idexx)=>indexedDB.toString()}
+                   keyExtractor={(item,index)=>index.toString()}
                    data={this.state.writtenNotesList}
                    renderItem={this.renderItem}
                    />

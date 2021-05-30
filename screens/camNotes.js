@@ -3,7 +3,7 @@ import {View,TouchableOpacity,Text, KeyboardAvoidingView, TextInput,StyleSheet} 
 import {Header} from "react-native-elements"
 import db from "../config"
 import firebase from "firebase"
-import {ListItem} from "react-native-elements"
+
 import { FlatList } from "react-native"
 
 
@@ -16,7 +16,7 @@ export default class WrittenNotes extends React.Component{
       }
       this.requestRef=null;
   }
-  getWrittenNotesList=()=>{
+  getcamNotesList=()=>{
       this.requestRef=db.collection("camNotes")
       .onSnapshot((snapShot)=>{
           var camNotesList= snapShot.docs.map((doc)=>doc.data());
@@ -35,10 +35,7 @@ export default class WrittenNotes extends React.Component{
     renderItem=({item,i})=>{
         return (
             <View>
-                <Text>
-                {item.subject}
-                {item.topic}
-                </Text>
+                
                 <TouchableOpacity 
                 onPress={()=>{
                    
@@ -60,7 +57,7 @@ export default class WrittenNotes extends React.Component{
                    </View>
                ):(
                    <FlatList 
-                   keyExtractor={(item,idexx)=>indexedDB.toString()}
+                   keyExtractor={(item,index)=>index.toString()}
                    data={this.state.camNotesList}
                    renderItem={this.renderItem}
                    />
