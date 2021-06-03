@@ -53,13 +53,14 @@ export default class LoginScreen extends React.Component {
     showModal = () => {
         return (
             <Modal
+                
                 animationType="fade"
                 transparent={false}
                 visible={this.state.isModalVisible}>
-                <View>
+                <View style={styles.container}>
                     <ScrollView style={{ width: '100%' }}>
                         <KeyboardAvoidingView>
-                            <Text>Registration</Text>
+                            <Text style={styles.heading}>Registration</Text>
                             <TextInput
                                 placeholder="firstName"
                                 style={styles.inputBox}
@@ -100,7 +101,7 @@ export default class LoginScreen extends React.Component {
                                 value={this.state.section}
                             /> 
                             <TextInput
-                            style={styles.textinput}
+                            style={styles.inputBox}
                             placeholder="email ID"
                             value={this.state.emailId}
                             onChangeText={(text) => {
@@ -159,12 +160,12 @@ export default class LoginScreen extends React.Component {
     }
     render() {
         return (
-            <View>
-                <Text>CLASS NOTES</Text>
+            <View style={styles.container}>
+                <Text style={styles.heading}>CLASS NOTES</Text>
                 <View>{this.showModal()}</View>
                 <KeyboardAvoidingView>
                     <TextInput
-                        style={styles.textinput}
+                        style={styles.inputBox}
                         placeholder="email ID"
                         value={this.state.emailId}
                         onChangeText={(text) => {
@@ -174,7 +175,7 @@ export default class LoginScreen extends React.Component {
                         }}
                     />
                     <TextInput
-                        style={styles.textinput}
+                        style={styles.inputBox}
                         placeholder="password"
                         value={this.state.password}
                         secureTextEntry={true}
@@ -184,7 +185,7 @@ export default class LoginScreen extends React.Component {
                             })
                         }}
                     />
-                    <TouchableOpacity onPress={() => {
+                    <TouchableOpacity style={styles.button} onPress={() => {
                         this.login();
                     }}><Text>Login</Text></TouchableOpacity>
 
@@ -201,18 +202,42 @@ export default class LoginScreen extends React.Component {
     }
 }
 var styles = StyleSheet.create({
-    textinput: {
-        padding: 10
-    }, textinput: {
-        padding: 10,
-        borderWidth: 0.5,
-        marginTop: 10,
-        alignSelf: "center"
-    }, button: {
-        padding: 10,
-        borderWidth: 0.5,
-        marginTop: 10,
-        alignSelf: "center",
-        backgroundColor: "red"
-    }
-})
+    heading: {
+      fontSize: 30,
+      fontWeight: 'bold',
+      fontStyle:"italic",
+      shadowColor:"#0061A8",
+      marginTop:50,
+      marginLeft:120,
+      color:"#0061A8"
+    },
+    container: {
+      backgroundColor:"#ffc2b4",
+     height:1000
+    },
+    inputBox: {
+      width: '80%',
+      backgroundColor: "#FBE0C4",
+      borderWidth: 2,
+      padding: 10,
+      textAlign: 'center',
+      margin: 15,
+      
+      alignSelf:"center",
+      
+    },
+    button: {
+      width: '50%',
+      alignItems:"center",
+      borderWidth: 0.2,
+      padding: 15,
+      backgroundColor: '#8AB6D6',
+      margin: 15,
+      alignSelf:"center",
+      marginTop:20
+    },
+    buttonText: {
+      fontSize: 15,
+      textAlign:"center"
+    },
+  });

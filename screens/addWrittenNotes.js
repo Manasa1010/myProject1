@@ -28,21 +28,21 @@ export default class AddWrittenNotes extends React.Component{
 
     render(){
         return(
-            <KeyboardAvoidingView>
+            <KeyboardAvoidingView style={styles.container}>
                <Header centerComponent={"Add Notes"}></Header>
-               <TextInput style={styles.textinput} placeholder={"Subject"} value={this.state.subject} onChangeText={(text)=>{
+               <TextInput style={styles.inputBox} placeholder={"Subject"} value={this.state.subject} onChangeText={(text)=>{
                    this.setState({
                        subject:text
                    })
                    
                }}/>
-                <TextInput style={styles.textinput} placeholder={"Topic"} value={this.state.topic} onChangeText={(text)=>{
+                <TextInput style={styles.inputBox} placeholder={"Topic"} value={this.state.topic} onChangeText={(text)=>{
                    this.setState({
                        topic:text
                    })
                    
                }}/>
-                <TextInput style={styles.textinput} placeholder={"Notes"} value={this.state.note} onChangeText={(text)=>{
+                <TextInput style={styles.inputBox} placeholder={"Notes"} value={this.state.note} onChangeText={(text)=>{
                    this.setState({
                        note:text
                    })
@@ -59,17 +59,47 @@ export default class AddWrittenNotes extends React.Component{
         )
     }
 }
-var styles=StyleSheet.create({
-    textinput:{
-        padding:10,
-        borderWidth:0.5,
-        marginTop:10,
-        alignSelf:"center"
-    },button:{
-        padding:10,
-        borderWidth:0.5,
-        marginTop:10,
-        alignSelf:"center",
-        backgroundColor:"red"
-    }
-})
+var styles = StyleSheet.create({
+    heading: {
+      fontSize: 30,
+      fontWeight: 'bold',
+      fontStyle:"italic",
+      shadowColor:"#0061A8",
+      marginTop:100,
+      marginLeft:10,
+      color:"#0061A8",
+      
+    },
+    container: {
+      backgroundColor:"#ffc2b4",
+     
+      height:1000
+    },
+    inputBox: {
+      width: '80%',
+      backgroundColor: "#FBE0C4",
+      borderWidth: 2,
+      padding: 10,
+      textAlign: 'center',
+      marginTop: 15,
+      borderRadius:30,
+      alignSelf:"center",
+      
+    },
+    button: {
+      width: '50%',
+      alignItems:"center",
+      borderWidth: 0.2,
+      padding: 15,
+      backgroundColor: '#8AB6D6',
+      margin: 15,
+      alignSelf:"center",
+      marginTop:10,
+      justifyContent:"center",
+     
+    },
+    buttonText: {
+      fontSize: 15,
+      textAlign:"center"
+    },
+  });

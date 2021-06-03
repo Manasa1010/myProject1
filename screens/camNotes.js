@@ -7,7 +7,7 @@ import firebase from "firebase"
 import { FlatList } from "react-native"
 
 
-export default class WrittenNotes extends React.Component{
+export default class CamNotes extends React.Component{
   constructor(){
       super();
       this.state={
@@ -35,10 +35,11 @@ export default class WrittenNotes extends React.Component{
     renderItem=({item,i})=>{
         return (
             <View>
-                
+                <Text>{item.std}</Text>
+                <Text>{item.chapter}</Text>
                 <TouchableOpacity 
                 onPress={()=>{
-                   
+                   this.props.navigation.navigate("ImageNotes",{"item":item})
                 }}
                 ><Text>View</Text></TouchableOpacity>
             
@@ -49,7 +50,7 @@ export default class WrittenNotes extends React.Component{
     }
     render(){
         return(
-            <KeyboardAvoidingView>
+            <KeyboardAvoidingView style={styles.container}>
                 <Header centerComponent={{text:"camNotes"}}/>
                {this.state.camNotesList.length===0?(
                    <View>
@@ -67,8 +68,45 @@ export default class WrittenNotes extends React.Component{
         )
     }
 }
-var styles=StyleSheet.create({
-    textinput:{
-        padding:10
-    }
-})
+var styles = StyleSheet.create({
+    heading: {
+      fontSize: 30,
+      fontWeight: 'bold',
+      fontStyle:"italic",
+      shadowColor:"#0061A8",
+      marginTop:100,
+      marginLeft:10,
+      color:"#0061A8",
+      
+    },
+    container: {
+      backgroundColor:"#ffc2b4",
+     height:1000
+    },
+    inputBox: {
+      width: '80%',
+      backgroundColor: "#FBE0C4",
+      borderWidth: 2,
+      padding: 10,
+      textAlign: 'center',
+      marginTop: 15,
+      
+      alignSelf:"center",
+      
+    },
+    button: {
+      width: '50%',
+      alignItems:"center",
+      borderWidth: 0.2,
+      padding: 15,
+      backgroundColor: '#8AB6D6',
+      margin: 15,
+      alignSelf:"center",
+      marginTop:10,
+      justifyContent:"center"
+    },
+    buttonText: {
+      fontSize: 15,
+      textAlign:"center"
+    },
+  });

@@ -12,6 +12,7 @@ import {createDrawerNavigator} from "react-navigation-drawer"
 import CustomSideBarMenu from "./components/customSideBarMenu";
 import EditProfileInfo from "./screens/editProfileInfo";
 import AddCamNotes from "./screens/addCamNotes"
+import {AppStackNavigator} from "./components/stackNav1"
 export default class App extends React.Component{
   render(){
     return(
@@ -28,7 +29,7 @@ var SwitchNavigator2=createSwitchNavigator({
 
 var TabNavigator=createBottomTabNavigator({
   Home:{screen:SwitchNavigator2},
-  CamNotes:{screen:CamNotes},
+  CamNotes:{screen:AppStackNavigator},
   WrittenNotes:{screen:WrittenNotes}
 })
 
