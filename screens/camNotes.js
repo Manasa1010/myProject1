@@ -34,7 +34,7 @@ export default class CamNotes extends React.Component{
     
     renderItem=({item,i})=>{
         return (
-            <View>
+            <View style={styles.button}>
                 <Text>{item.std}</Text>
                 <Text>{item.chapter}</Text>
                 <TouchableOpacity 
@@ -58,6 +58,7 @@ export default class CamNotes extends React.Component{
                    </View>
                ):(
                    <FlatList 
+                   
                    keyExtractor={(item,index)=>index.toString()}
                    data={this.state.camNotesList}
                    renderItem={this.renderItem}
@@ -95,15 +96,17 @@ var styles = StyleSheet.create({
       
     },
     button: {
-      width: '50%',
+      width: 300,
       alignItems:"center",
       borderWidth: 0.2,
       padding: 15,
       backgroundColor: '#8AB6D6',
       margin: 15,
-      alignSelf:"center",
+      alignSelf:"flex-start",
       marginTop:10,
-      justifyContent:"center"
+      justifyContent:"center",
+      borderRadius:10,
+      height:80
     },
     buttonText: {
       fontSize: 15,
